@@ -1,0 +1,32 @@
+@use 'breakpoints' as *;
+
+@mixin breakpoint($size) {
+  @media screen and (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media screen and (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin state-transition($properties, $states: (hover, focus-visible)) {
+  transition: var(--duration-1) ease;
+  transition-property: $properties;
+
+  @each $state in $states {
+    @if $state == hover {
+      @media (hover: hover) {
+        &:hover {
+          @content;
+        }
+      }
+    }
+
+    &:#{$state} {
+      @content;
+    }
+  }
+}

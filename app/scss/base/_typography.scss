@@ -1,0 +1,65 @@
+@use '../abstracts/' as *;
+
+:root {
+  --font-jetbrains-mono: 'JetBrains Mono', monospace;
+  --font-size-2: #{rem(14)};
+  --font-size-3: #{rem(16)};
+  --font-size-6: #{rem(24)};
+
+  @include breakpoint(medium) {
+    --font-size-2: #{rem(16)};
+    --font-size-3: #{rem(18)};
+    --font-size-6: #{rem(28)};
+  }
+}
+
+body {
+  font-family: var(--font-jetbrains-mono);
+}
+
+.headline-1 {
+  text-align: center;
+  line-height: 1.2;
+}
+
+.text {
+  font-weight: 700;
+
+  @each $variation in (sm, md, lg) {
+    &-#{$variation} {
+      @extend .text;
+    }
+  }
+
+  &-sm {
+    font-size: var(--font-size-2);
+  }
+
+  &-md {
+    font-size: var(--font-size-3);
+  }
+
+  &-lg {
+    font-size: var(--font-size-6);
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--light {
+    color: var(--color-gray-2);
+  }
+
+  &--bright {
+    color: var(--color-bright-blue);
+  }
+
+  &--grayish {
+    color: var(--color-gray-5);
+  }
+
+  &--gray {
+    color: var(--color-gray-7);
+  }
+}

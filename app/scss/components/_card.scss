@@ -1,0 +1,150 @@
+@use '../abstracts/' as *;
+
+.card {
+  --card-padding: #{rem(20)};
+  width: min(100%, rem(560));
+  display: flex;
+  padding: var(--card-padding);
+  gap: rem(24);
+  background-color: var(--color-dark-blue-8);
+  border-radius: var(--border-radius-1);
+
+  @include breakpoint(medium) {
+    --card-padding: #{rem(24)};
+  }
+
+  &--output,
+  &--input {
+    @extend .card;
+  }
+
+  &--output {
+    column-gap: rem(12);
+    position: relative;
+    overflow: hidden;
+    min-height: rem(60);
+    padding-block: rem(10);
+    margin-block: rem(24) rem(20);
+
+    &::after {
+      content: 'Password Copied!';
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background-color: var(--color-bright-blue);
+      opacity: 0;
+      font-size: var(--font-size-3);
+      color: var(--color-dark-blue-9);
+      text-transform: uppercase;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    }
+
+    &.copied::after {
+      opacity: 1;
+      animation: show-copied 1000ms ease-in-out forwards;
+
+      @keyframes show-copied {
+        40%,
+        60% {
+          clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+        }
+        100% {
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        }
+      }
+    }
+
+    .output {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      color: var(--color-gray-2);
+
+      &[data-output='placeholder'] {
+        color: var(--color-gray-7);
+      }
+    }
+  }
+
+  &--input {
+    flex-direction: column;
+  }
+
+  &__slider {
+    row-gap: rem(18);
+
+    .space-between {
+      column-gap: rem(12);
+    }
+  }
+
+  &__checkboxes {
+    row-gap: rem(15);
+
+    .wrapper {
+      column-gap: rem(16);
+    }
+
+    label,
+    input[type='checkbox'] {
+      cursor: pointer;
+    }
+  }
+
+  &__strength {
+    min-height: rem(60);
+    flex-wrap: wrap;
+    gap: rem(12);
+    background-color: var(--color-dark-blue-9);
+    padding: rem(16) var(--card-padding);
+    border-radius: var(--border-radius-1);
+
+    .strength__status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: rem(12);
+    }
+
+    .wrapper {
+      column-gap: rem(5);
+    }
+
+    .marker {
+      --marker-size: #{rem(14)};
+      width: var(--marker-size);
+      height: var(--marker-size);
+      display: block;
+      border: rem(2) solid var(--color-gray-2);
+      border-radius: 50%;
+
+      @include breakpoint(medium) {
+        --marker-size: #{rem(16)};
+      }
+
+      [data-strength='Very Weak'] &:nth-child(-n + 1) {
+        background-color: var(--color-red);
+        border-color: var(--color-red);
+      }
+
+      [data-strength='Weak'] &:nth-child(-n + 2) {
+        background-color: var(--color-orange);
+        border-color: var(--color-orange);
+      }
+
+      [data-strength='Good'] &:nth-child(-n + 3) {
+        background-color: var(--color-green);
+        border-color: var(--color-green);
+      }
+
+      [data-strength='Strong'] &:nth-child(-n + 4) {
+        background-color: var(--color-blue);
+        border-color: var(--color-blue);
+      }
+    }
+  }
+}

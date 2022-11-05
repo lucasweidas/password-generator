@@ -1,0 +1,48 @@
+@use '../abstracts/' as *;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-copy,
+  &-generate {
+    @extend .button;
+  }
+
+  &-copy {
+    background-color: transparent;
+    font-size: rem(22);
+    color: var(--color-bright-blue);
+
+    @include state-transition(color) {
+      outline: none;
+      color: var(--color-gray-2);
+    }
+  }
+
+  &-generate {
+    --button-min-height: #{rem(50)};
+    min-height: var(--button-min-height);
+    column-gap: rem(12);
+    background-color: var(--color-bright-blue);
+    border: rem(2) solid var(--color-bright-blue);
+    border-radius: var(--border-radius-1);
+    color: var(--color-dark-blue-9);
+
+    @include state-transition((background-color, color)) {
+      outline: none;
+      background-color: transparent;
+      color: var(--color-bright-blue);
+    }
+
+    @include breakpoint(medium) {
+      --button-min-height: #{rem(60)};
+    }
+
+    .fa-rotate-right.rotate {
+      transition: transform var(--duration-2) linear;
+      transform: rotateZ(360deg);
+    }
+  }
+}

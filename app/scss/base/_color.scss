@@ -1,0 +1,14 @@
+@use '../abstracts/' as *;
+
+:root {
+  --color-dark-blue-8: hsl(240, 6%, 10%);
+  --color-dark-blue-9: hsl(240, 7%, 6%);
+  --color-bright-blue: hsl(187, 100%, 46%);
+  --color-gray-2: hsl(0, 0%, 88%);
+  --color-gray-5: hsl(255, 2%, 56%);
+  --color-gray-7: hsl(225, 5%, 31%);
+  --color-blue: hsl(213, 83%, 51%);
+  --color-green: hsl(151, 97%, 42%);
+  --color-orange: hsl(13, 95%, 66%);
+  --color-red: hsl(352, 91%, 54%);
+}

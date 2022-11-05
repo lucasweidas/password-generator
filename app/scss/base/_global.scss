@@ -1,0 +1,40 @@
+@use '../abstracts/' as *;
+
+:root {
+  --border-radius-1: #{rem(5)};
+  --duration-1: 150ms;
+  --duration-2: 250ms;
+}
+
+body {
+  background-color: var(--color-dark-blue-9);
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  place-items: center;
+  padding: rem(40) rem(24);
+  padding-block: rem(40);
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}

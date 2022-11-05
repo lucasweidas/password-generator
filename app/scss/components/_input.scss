@@ -1,0 +1,98 @@
+@use '../abstracts/' as *;
+
+.input-length {
+  --filled-percentage: 47.3684%;
+  --input-height: #{rem(6)};
+  --thumb-size: #{rem(22)};
+  appearance: none;
+  width: 100%;
+  height: var(--input-height);
+  background: linear-gradient(90deg, var(--color-bright-blue) var(--filled-percentage), var(--color-dark-blue-9) 0%);
+  margin-block: rem(8);
+  outline: none;
+  border-radius: calc(var(--input-height) / 2);
+
+  @include state-transition((background-color, border-color), focus-visible) {
+    &::-webkit-slider-thumb {
+      background-color: var(--color-dark-blue-9);
+      border-color: var(--color-bright-blue);
+    }
+  }
+
+  @include breakpoint(medium) {
+    --thumb-size: #{rem(24)};
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background-color: var(--color-gray-2);
+    border: rem(2) solid var(--color-gray-2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: background-color, border-color;
+    transition: var(--duration-1) ease;
+
+    @include state-transition((background-color, border-color), hover) {
+      background-color: var(--color-dark-blue-9);
+      border-color: var(--color-bright-blue);
+    }
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background-color: var(--color-gray-2);
+    border: rem(2) solid var(--color-gray-2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: background-color, border-color;
+    transition: var(--duration-1) ease;
+
+    @include state-transition((background-color, border-color), hover) {
+      background-color: var(--color-dark-blue-9);
+      border-color: var(--color-bright-blue);
+    }
+  }
+}
+
+.input-checkbox {
+  --input-size: #{rem(18)};
+  --input-border-width: #{rem(2)};
+  width: var(--input-size);
+  height: var(--input-size);
+  position: relative;
+  appearance: none;
+  background-color: transparent;
+  border: var(--input-border-width) solid var(--color-gray-2);
+  border-radius: var(--border-radius-1);
+
+  @include state-transition(border-color) {
+    border-color: var(--color-bright-blue);
+    outline: none;
+  }
+
+  @include breakpoint(medium) {
+    --input-size: #{rem(20)};
+  }
+
+  &::before {
+    content: url('../images/check-solid.svg');
+    width: inherit;
+    height: inherit;
+    display: block;
+    position: absolute;
+    inset: calc(var(--input-border-width) * -1);
+    opacity: 0;
+    background-color: var(--color-bright-blue);
+    padding: rem(2);
+    border-radius: inherit;
+    transition: opacity var(--duration-1) ease;
+  }
+
+  &:checked::before {
+    opacity: 1;
+  }
+}
